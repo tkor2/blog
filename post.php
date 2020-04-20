@@ -41,10 +41,19 @@ class Post{
 					WHERE tags.tag='$tag'";
             $result = mysqli_query($this->db,$sql);
             return $result;
-
         }
 
-        $sql = "select * from posts";
+        $limit = 2;
+        if(isset($_GET["page"])){
+            $page = $_GET["page"];
+        } else{
+            $page = 1;
+        }
+        $start = ($page-1)* $limit;
+
+
+
+        $sql = "select * from posts LIMIT $start, $limit ";
         $result = mysqli_query($this->db, $sql);
         return $result;
     }
@@ -79,6 +88,14 @@ class Post{
     public function deletePostBySlug($slug){
         $sql = "DELETE FROM posts WHERE slug='$slug'";
         $result = mysqli_query($this->db,$sql);
+        return $result;
+    }
+
+    public function getPopularPosts(){
+        $sql = "SELECT * from posts left join comments on posts.slug= 
+            comments.slug group by 
+            comments.slug order by count(comments.slug) desc limit 5";
+        $result = mysqli_query($this->db, $sql);
         return $result;
     }
 }
