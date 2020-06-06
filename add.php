@@ -64,7 +64,7 @@ if (isset($_POST['btnSubmit'])){
                         <div class="form-group form-check-inline">
                             <label for="image"><b>Choose tags</b>&nbsp;&nbsp;</label>
                             <?php  foreach($tags->getAllTags() as $tag){ ?>
-                                <input type="checkbox" name="tags[]" class="form-check-input" value="<?php echo $tag['id'] ?>"><?php echo $tag['tag']; ?>
+                                <input type="checkbox" name="tags[]" class="form-check-input" value="<?php echo $tag['id']?>"><?php echo $tag['tag'];  ?>&nbsp
                             <?php } ?>
                         </div>
                         <div class="form-group">

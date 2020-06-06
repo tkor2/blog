@@ -21,7 +21,7 @@ $tags = new Tag($db);
                     <img src="images/<?php echo $post['image']; ?>" class="media-object" style="width: 200px">
                     <p>
                         <br>
-                        Gemaakt:<?php echo date('Y-m-d',strtotime($post['created_at'])); ?>
+                        Gemaakt: <?php echo date('Y-m-d',strtotime($post['created_at'])); ?>
                     </p>
                 </div>
                 <div class="media-body">
@@ -32,45 +32,45 @@ $tags = new Tag($db);
             <?php } ?>
 
             <?php
-	$sql = "SELECT count(id)from posts";
-	$result = mysqli_query($db,$sql);
-	$row = mysqli_fetch_row($result);
-	$totalRecords = $row[0];
-	$totalPages = ceil($totalRecords/5);
-	$pageLink = "<ul class='pagination'>";
+            $sql = "SELECT count(id)from posts";
+            $result = mysqli_query($db,$sql);
+            $row = mysqli_fetch_row($result);
+            $totalRecords = $row[0];
+            $totalPages = ceil($totalRecords/5);
+            $pageLink = "<ul class='pagination'>";
 
-	if(!isset($_GET['tag'])){
-		//if there is "tag" we don't show pagination
-		if (!isset($_GET['page'])) {
-			//is there is no "page" we set $_GET=1
-			$_GET['page']=1;
-		}
+            if(!isset($_GET['tag'])){
+                //if there is "tag" we don't show pagination
+                if (!isset($_GET['page'])) {
+                    //is there is no "page" we set $_GET=1
+                    $_GET['page']=1;
+                }
 
-	$page = $_GET['page'];
+                $page = $_GET['page'];
 
-	if($page>1){
+                if($page>1){
 
-		$pageLink.="<a class='page-link'href='index.php?page=1'>Eerste</a>";
+                    $pageLink.="<a class='page-link'href='index.php?page=1'>Eerste</a>";
 
-		$pageLink.="<a class='page-link'href='index.php?page=".($page-1)."'><<<</a>";
-	}
+                    $pageLink.="<a class='page-link'href='index.php?page=".($page-1)."'><<<</a>";
+                }
 
-	for($i=1;$i<=$totalPages;$i++){
-		$pageLink.="<a class='page-link'href='index.php?page=".$i."'>".$i."</a>  ";
-	}
+                for($i=1;$i<=$totalPages;$i++){
+                    $pageLink.="<a class='page-link'href='index.php?page=".$i."'>".$i."</a>  ";
+                }
 
-	if($page<=$totalPages){
+                if($page<=$totalPages){
 
-		$pageLink.="<a class='page-link'href='index.php?page=".($page+1)."'>>>></a>";
+                    $pageLink.="<a class='page-link'href='index.php?page=".($page+1)."'>>>></a>";
 
-		$pageLink.="<a class='page-link'href='index.php?page=".$totalPages."'>Laatste</a>";
-	}
+                    $pageLink.="<a class='page-link'href='index.php?page=".$totalPages."'>Laatste</a>";
+                }
 
 
-	echo $pageLink."</ul>";
+                echo $pageLink."</ul>";
 
-}
-?>
+            }
+            ?>
 
         </div>
         <div class="col-md-4">

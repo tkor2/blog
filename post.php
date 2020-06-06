@@ -43,13 +43,14 @@ class Post{
             return $result;
         }
 
-        $limit = 2;
+        $limit = 5;
         if(isset($_GET["page"])){
             $page = $_GET["page"];
-        } else{
-            $page = 1;
+        }else{
+            $page =1;
+
         }
-        $start = ($page-1)* $limit;
+        $start = ($page-1)*$limit ;
 
 
 
